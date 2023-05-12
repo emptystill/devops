@@ -6,7 +6,7 @@ def call() {
           steps {
             // Ejecuta el análisis estático del código con SonarQube
             withSonarQubeEnv('SonarQube') {
-              sh 'mvn sonar:sonar'
+              bat 'mvn sonar:sonar'
             }
           }
         }
