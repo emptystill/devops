@@ -1,4 +1,4 @@
-def call() {
+def codeAnalysisFunction() {
   pipeline {
     agent any
 
@@ -13,8 +13,7 @@ def call() {
         steps {
           // Ejecuta el análisis estático del código con SonarQube
           withSonarQubeEnv('SonarQube') {
-            emptystill.devops.buildPipelineFunction()
-            another - library.someFunction()
+            bat 'mvn sonar:sonar'
           }
         }
       }
