@@ -1,4 +1,4 @@
-def codeAnalysisFunction() {
+def call() {
   pipeline {
     agent any
 
