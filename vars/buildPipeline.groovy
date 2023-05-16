@@ -1,3 +1,4 @@
 def call() {
-  echo "Llamó a la librería buildPipeline"
+  def mvnHome = tool 'Maven'
+  sh "${mvnHome}/bin/mvn clean package"
 }
