@@ -32,5 +32,3 @@ def call() {
     }
   }
 }
-
-return this
