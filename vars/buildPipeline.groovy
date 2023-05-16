@@ -1,3 +1,5 @@
 def call() {
-  sh 'mvn clean package'
+      withMaven(maven: 'Maven_3.9.0') {
+        sh 'mvn clean package'
+    }
 }
