@@ -1,13 +1,3 @@
 def call() {
-  stage('Checkout') {
-    steps {
-      checkout scm
-    }
-  }
-
-  stage('Test') {
-    steps {
-      // Agrega aquí los pasos para ejecutar las pruebas
-    }
-  }
+  echo "Llamó a la librería Pipeline"
 }
