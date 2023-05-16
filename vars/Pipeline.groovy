@@ -5,11 +5,9 @@ def call() {
     }
   }
 
-  stage('Build') {
+  stage('Test') {
     steps {
-      withMaven(maven: 'Maven_3.9.0') {
-        bat 'mvn clean package'
-      }
+      // Agrega aquí los pasos para ejecutar las pruebas
     }
   }
 }
