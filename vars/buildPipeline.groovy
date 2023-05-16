@@ -1,5 +1,5 @@
-def call() {
-      withMaven(maven: 'Maven_3.9.0') {
-        sh 'mvn clean package'
-    }
+class Utilities {
+  static def mvn(script, args) {
+    script.sh "${script.tool 'Maven'}/bin/mvn -s ${script.env.HOME}/jenkins.xml -o ${args}"
+  }
 }
