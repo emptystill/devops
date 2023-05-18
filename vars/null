@@ -8,5 +8,5 @@ def call(script) {
   script.bat "docker rm ${containerName} || true"
 
   // Comando para iniciar un nuevo contenedor con la imagen especificada
-  script.bat "docker run -d --name ${containerName} -p 8080:8080 ${imageName}:${imageTag}"
+  script.bat "docker run -d --name ${containerName} -p 8081:8080 ${imageName}:${imageTag}"
 }
