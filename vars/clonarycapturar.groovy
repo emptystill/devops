@@ -8,7 +8,7 @@ def call(script) {
         [name: 'feature']
     ])
     git.extensions([
-        [$class: 'CleanBeforeCheckout']
+        [ $class: 'hudson.plugins.git.extensions.impl.CleanBeforeCheckout' ]
     ])
   """
 }
