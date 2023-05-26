@@ -11,7 +11,7 @@ def call(String scmUrl) {
           checkout([
             $class: 'GitSCM',
             branches: [
-              [name: 'featurex']
+              [name: 'feature']
             ], // Rama específica que deseas capturar
             userRemoteConfigs: [
               [url: scmUrl]
