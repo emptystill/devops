@@ -5,6 +5,9 @@ def call(String scmUrl) {
   pipeline {
     agent any
 
+    environment {
+        BRANCH_NAME = ""
+    }
     stages {
       stage('Capture Branch') {
         steps {
