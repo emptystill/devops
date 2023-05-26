@@ -1,7 +1,7 @@
 def call(String repoUrl, String branch) {
   node {
     stage("Cloning repository") {
-      dir('repo') {
+      dir('.') {
         git url: repoUrl, branch: branch
       }
     }
