@@ -4,7 +4,7 @@ def call(String scmUrl) {
     agent any
 
     stages {
-      stage('Clonar repositorio') {
+      stage('Clonar y Capturar') {
         steps {
           checkout([
             $class: 'GitSCM',
