@@ -1,16 +1,13 @@
 def call(script) {
-  script.bat """
-  def scm = new hudson.plugins.git.GitSCM()
-  scm.userRemoteConfigs([[
-    url: scmUrl
-  ]])
-  scm.branches([[
-    name: 'feature'
-  ]])
-  scm.extensions([[
-    \$class: 'hudson.plugins.git.extensions.impl.CleanBeforeCheckout'
-  ]])
-
-  return scm
-  """
+  script.bat "GitSCM git = new GitSCM()
+  git.userRemoteConfigs([
+    [url: scmUrl]
+  ])
+  git.branches([
+    [name: 'feature']
+  ])
+  git.extensions([
+    [$class: 'CleanBeforeCheckout']
+  ])
+  "
 }
