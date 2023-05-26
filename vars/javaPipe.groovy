@@ -5,28 +5,21 @@ def call(String scmUrl) {
   pipeline {
     agent any
 
-    stage('Clone Repository') {
-      steps {
-        script {
-          def repositoryUrl = scmUrl
-          def repositoryName = repositoryUrl.substring(repositoryUrl.lastIndexOf("/") + 1, repositoryUrl.lastIndexOf(".git"))
-
-          dir(repositoryName) {
-            checkout scm
+    stages {
+      stage('Build') {
+        steps {
+          script {
+            buildPipeline(this, 'clean package')
           }
         }
       }
-    }
 
-    stage('Build') {
-      steps {
-        buildPipeline(this, 'clean package')
-      }
-    }
-
-    stage('CodeAnalysis') {
-      steps {
-        codeAnalysis(this)
+      stage('CodeAnalysis') {
+        steps {
+          script {
+            codeAnalysis(this)
+          }
+        }
       }
     }
   }
