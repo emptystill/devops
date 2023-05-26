@@ -5,21 +5,18 @@ def call(String scmUrl) {
   pipeline {
     agent any
 
-    environment {
-        BRANCH_NAME = ""
-    }
     stages {
       stage('Capture Branch') {
         steps {
           script {
             def branchName = ""
-            if (env.BRANCH_NAME.startsWith("refs/pull/")) {
-              branchName = sh(returnStdout: true, script: 'echo ${env.CHANGE_ID}').trim()
-            } else if (env.BRANCH_NAME.startsWith("feature/")) {
+
+            if (env.BRANCH_NAME == ~/feature\/.*/) {
               branchName = env.BRANCH_NAME
             } else {
               error("Unsupported branch: ${env.BRANCH_NAME}")
             }
+
             echo "Captured branch name: ${branchName}"
           }
         }
