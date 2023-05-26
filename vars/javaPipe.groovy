@@ -6,20 +6,11 @@ def call(String scmUrl) {
     agent any
 
     stages {
-      stage('Clonar repositorio') {
+      stage('Clonar y Capturar') {
         steps {
-          checkout([
-            $class: 'GitSCM',
-            branches: [
-              [name: 'feature']
-            ], // Rama específica que deseas capturar
-            userRemoteConfigs: [
-              [url: scmUrl]
-            ], // Utiliza la URL pasada como parámetro
-            extensions: [
-              [$class: 'CleanBeforeCheckout']
-            ] // Opcional: Realiza una limpieza antes de clonar
-          ])
+          script {
+            clonarycapturar(this)
+          }          
         }
       }
 
