@@ -1,4 +1,4 @@
-@Library(['build-library', 'sonarqube-library' ,'dockerbuild-library', 'dockerpush-library', 'dockerdeploy-library', 'owaspanalysis-library']) _
+@Library(['build-library', 'sonarqube-library']) _
 
 
 pipeline {
@@ -15,25 +15,5 @@ pipeline {
         codeAnalysis(this)
       }
     }
-    // stage('DockerBuild') {
-    //   steps {
-    //     dockerBuild(this)
-    //   }  
-    // }
-    // stage('DockerPush') {
-    //   steps {
-    //     dockerPush(this)
-    //   }  
-    // }
-    // stage('DockerDeploy') {
-    //   steps {
-    //     dockerDeploy(this)
-    //   }  
-    // }
-    // stage('OwaspAnalysis') {
-    //   steps {
-    //     owaspAnalysis(this)
-    //   }  
-    // }
   }
 }
