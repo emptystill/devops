@@ -1,8 +1,4 @@
 def call(String scmUrl) {
-
-  pipeline {
-    agent any
-
     stages {
       stage('Clonar y Capturar') {
         steps {
@@ -22,4 +18,3 @@ def call(String scmUrl) {
       }
     }
   }
-}
