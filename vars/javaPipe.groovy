@@ -3,14 +3,14 @@ def call(String scmUrl) {
   pipeline {
     agent any
 
-    // stages {
-    //   stage('Clonar y Capturar') {
-    //     steps {
-    //       script {
-    //         clonarycapturar('feature')
-    //       }          
-    //     }
-      // }
+    stages {
+      stage('Clonar y Capturar') {
+        steps {
+          script {
+            clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
+          }          
+        }
+      }
 
       stage('Build') {
         steps {
@@ -29,4 +29,4 @@ def call(String scmUrl) {
       }
     }
   }
-// }
+}
