@@ -3,7 +3,7 @@ def call(script) {
     bat "mvn clean verify sonar:sonar -Dsonar.projectKey=library-analysis -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_bdf628850b7cc4298af968a089d3ca1f46b594b7"
   }
   script.withSonarQubeEnv('SonarQube') {
-    timeout(time: 1, unit: 'HOURS') {
+    timeout(time: 3, unit: 'MINUTES') {
       waitForQualityGate abortPipeline: true
     }
   }
