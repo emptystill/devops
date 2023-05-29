@@ -1,5 +1,5 @@
 def call(String repoUrl, String branch) {
   node {
-      git url: repoUrl, branch: "feature"
+      git url: repoUrl, branch: "main"
     }
   }
