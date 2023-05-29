@@ -7,6 +7,8 @@ def call(script) {
         if %errorlevel% equ 0 (
             echo Quality gate failed. Pipeline halted.
             exit 1
+        ) else (
+            echo Quality gate passed. Continuing the pipeline.
         )
     '''
 }
