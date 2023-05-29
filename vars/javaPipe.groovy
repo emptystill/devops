@@ -7,7 +7,7 @@ def call(String scmUrl) {
       stage('Clonar y Capturar') {
         steps {
           script {
-            clonarycapturar('main')
+            clonarycapturar('https://github.com/emptystill/JavaAplication.git')
           }          
         }
       }
