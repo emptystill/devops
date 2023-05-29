@@ -1,5 +1,3 @@
-// @Library(['build-library', 'sonarqube-library']) _
-
 def call(String scmUrl) {
 
   pipeline {
