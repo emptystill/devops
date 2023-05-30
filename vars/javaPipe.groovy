@@ -24,7 +24,7 @@ def call(String scmUrl) {
         }
       }
 
-    //variables de entorno//
+    ///variables de entorno///
       stage('Docker Build') {
         steps {
           script {
