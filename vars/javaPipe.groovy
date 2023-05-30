@@ -6,7 +6,7 @@ def call(String scmUrl) {
         steps {
           script {
             clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
-          }          
+          }
         }
       }
       stage('Build Artifact') {
@@ -23,35 +23,47 @@ def call(String scmUrl) {
           }
         }
       }
-      
-      stage('Docker Build') {
-        steps {
+
+      ///variables de entorno///
+      stage('Phase 2 Deploy') {
+        when {
           script {
-            dockerBuild(this)
+            beforeAgent true
+            expression {
+              return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'
+            }
+          }
+        }
+        stage('Docker Build') {
+          steps {
+            script {
+              dockerBuild(this)
+            }
+          }
+        }
+        stage('Docker Push') {
+          steps {
+            script {
+              dockerPush(this)
+            }
+          }
+        }
+        stage('Docker Deploy') {
+          steps {
+            script {
+              dockerDeploy(this)
+            }
+          }
+        }
+        stage('Owasp Analysis') {
+          steps {
+            script {
+              owaspAnalysis(this)
+            }
           }
         }
       }
-      stage('Docker Push') {
-        steps {
-          script {
-            dockerPush(this)
-          }
-        }
-      }
-      stage('Docker Deploy') {
-        steps {
-          script {
-            dockerDeploy(this)
-          }
-        }
-      }
-      stage('Owasp Analysis') {
-        steps {
-          script {
-            owaspAnalysis(this)
-          }
-        }
-      }
+
     }
   }
 }
