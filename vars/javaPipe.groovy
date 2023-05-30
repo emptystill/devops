@@ -33,7 +33,7 @@ def call(String scmUrl) {
             return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'
           }
         }
-        steps {
+        stages {
           stage('Docker Build') {
             steps {
               script {
