@@ -27,6 +27,7 @@ def call(String scmUrl) {
       }
 
       stage('Phase 2 Deploy') {
+        print "-----------${env.GIT_BRANCH}-----------"
         when {
           beforeAgent true
           expression {
