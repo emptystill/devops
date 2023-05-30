@@ -1,5 +1,3 @@
-// @Library(['build-library', 'sonarqube-library']) _
-
 def call(String scmUrl) {
 
   pipeline {
@@ -9,7 +7,7 @@ def call(String scmUrl) {
       stage('Clonar y Capturar') {
         steps {
           script {
-            clonarycapturar('feature')
+            clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
           }          
         }
       }
