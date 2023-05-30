@@ -5,7 +5,7 @@ def call(String scmUrl) {
       stage('Clone and Checkout') {
         steps {
           script {
-            print "-------------------${env.GIT_BRANCH}-------------------"
+            //print "-------------------${env.GIT_BRANCH}-------------------"
             clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
           }
         }
