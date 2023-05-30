@@ -27,14 +27,6 @@ def call(String scmUrl) {
           }
         }
       }
-
-    // stage('QualityGate') {
-    //     steps {
-    //       script {
-    //         qualityGate()
-    //       }
-    //     }
-    //   }
     }
   }
 }
