@@ -25,6 +25,15 @@ def call(String scmUrl) {
       }
 
     ///variables de entorno///
+      stage('Phase 2 Deploy') {
+        when {
+          script {
+            dockerBuild(this)
+            expression {return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'}
+          }
+        }
+      }  
+      
       stage('Docker Build') {
         steps {
           script {
