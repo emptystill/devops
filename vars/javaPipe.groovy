@@ -2,49 +2,51 @@ def call(String scmUrl) {
   pipeline {
     agent any
     stages {
-      stage('Clonar y Capturar') {
+      stage('Clone and Checkout') {
         steps {
           script {
             clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
           }          
         }
       }
-      stage('Build') {
+      stage('Build Artifact') {
         steps {
           script {
             buildPipeline(this, 'clean package')
           }
         }
       }
-      stage('CodeAnalysis') {
+      stage('SonarAnalysis y QualityGate') {
         steps {
           script {
             codeAnalysis(this)
           }
         }
       }
-      stage('DockerBuild') {
+
+    //variables de entorno//
+      stage('Docker Build') {
         steps {
           script {
             dockerBuild(this)
           }
         }
       }
-      stage('DockerPush') {
+      stage('Docker Push') {
         steps {
           script {
             dockerPush(this)
           }
         }
       }
-      stage('DockerDeploy') {
+      stage('Docker Deploy') {
         steps {
           script {
             dockerDeploy(this)
           }
         }
       }
-      stage('OwaspAnalysis') {
+      stage('Owasp Analysis') {
         steps {
           script {
             owaspAnalysis(this)
