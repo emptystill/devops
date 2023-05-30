@@ -28,7 +28,7 @@ def call(String scmUrl) {
       stage('Phase 2 Deploy') {
         when {
           script {
-            dockerBuild(this)
+            beforeAgent true
             expression {return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'}
           }
         }
