@@ -24,12 +24,12 @@ def call(String scmUrl) {
         }
       }
 
-    ///variables de entorno///
-      stage('Phase 2 Deploy') {
-        when {
-          script {
-            beforeAgent true
-            expression {return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'}
+    // ///variables de entorno///
+    //   stage('Phase 2 Deploy') {
+    //     when {
+    //       script {
+    //         beforeAgent true
+    //         expression {return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'}
           }
         }
       }  
@@ -62,6 +62,6 @@ def call(String scmUrl) {
           }
         }
       }
-    }
-  }
-}
+//     }
+//   }
+// }
