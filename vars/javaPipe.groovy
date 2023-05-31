@@ -31,7 +31,7 @@ def call(String scmUrl) {
         when {
           beforeAgent true
           expression {
-            return env.GIT_BRANCH = 'origin/develop' || env.GIT_BRANCH = 'origin/master'
+            return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'
           }
         }
         stages {
