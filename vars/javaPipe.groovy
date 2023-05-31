@@ -6,7 +6,7 @@ def call(String scmUrl) {
         steps {
           script {
             //print "-------------------${env.GIT_BRANCH}-------------------"
-            clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'develop')
+            clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
           }
         }
       }
@@ -31,7 +31,7 @@ def call(String scmUrl) {
         when {
           beforeAgent true
           expression {
-            return env.GIT_BRANCH = 'origin/develop' || env.GIT_BRANCH = 'origin/master'
+            return env.GIT_BRANCH != 'origin/develop' || env.GIT_BRANCH != 'origin/master'
           }
         }
         stages {
