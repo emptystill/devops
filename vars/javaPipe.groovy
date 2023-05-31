@@ -5,10 +5,12 @@ def call(String scmUrl) {
       stage('Clone and Checkout') {
         steps {
           script {
+            //print "-------------------${env.GIT_BRANCH}-------------------"
             clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
-          }          
+          }
         }
       }
+      
       stage('Build Artifact') {
         steps {
           script {
@@ -16,6 +18,7 @@ def call(String scmUrl) {
           }
         }
       }
+      
       stage('SonarAnalysis y QualityGate') {
         steps {
           script {
@@ -24,41 +27,44 @@ def call(String scmUrl) {
         }
       }
 
-    ///variables de entorno///
       stage('Phase 2 Deploy') {
         when {
-          script {
-            dockerBuild(this)
-            expression {return env.GIT_BRANCH == 'origin/develop' || env.GIT_BRANCH == 'origin/master'}
+          beforeAgent true
+          expression {
+            return env.GIT_BRANCH != 'origin/develop' || env.GIT_BRANCH != 'origin/master'
           }
         }
-      }  
-      
-      stage('Docker Build') {
-        steps {
-          script {
-            dockerBuild(this)
+        stages {
+          stage('Docker Build') {
+            steps {
+              script {
+                dockerBuild(this)
+              }
+            }
           }
-        }
-      }
-      stage('Docker Push') {
-        steps {
-          script {
-            dockerPush(this)
+
+          stage('Docker Push') {
+            steps {
+              script {
+                dockerPush(this)
+              }
+            }
           }
-        }
-      }
-      stage('Docker Deploy') {
-        steps {
-          script {
-            dockerDeploy(this)
+
+          stage('Docker Deploy') {
+            steps {
+              script {
+                dockerDeploy(this)
+              }
+            }
           }
-        }
-      }
-      stage('Owasp Analysis') {
-        steps {
-          script {
-            owaspAnalysis(this)
+
+          stage('Owasp Analysis') {
+            steps {
+              script {
+                owaspAnalysis(this)
+              }
+            }
           }
         }
       }
