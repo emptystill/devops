@@ -1,10 +1,13 @@
 def call(script) {
   def networkCheck = script.bat(
     returnStdout: true,
-    script: 'docker network inspect java_network >nul 2>&1 && echo EXISTS || echo NOT_EXISTS'
+    script: 'docker network inspect java_network'
   ).trim()
 
-  if (networkCheck.equals('NOT_EXISTS')) { // Corrección en la comparación
+  println "Salida del comando 'docker network inspect':"
+  println networkCheck
+
+  if (networkCheck.contains('[]"')) {
     // La red no existe, se crea
     script.bat 'docker network create java_network'
   } else {
