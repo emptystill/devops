@@ -13,9 +13,9 @@ def call(script) {
   def containerCheck = script.bat(
     returnStatus: true,
     script: 'docker inspect javacontainer >nul 2>&1 && echo EXISTS || echo NOT_EXISTS'
-  ).trim()
+  )
 
-  if (containerCheck == 'NOT_EXISTS') {
+  if (containerCheck.trim() == 'NOT_EXISTS') {
     script.bat 'docker run -d --network java_network --name javacontainer -p 8081:8080 mateopulido99/javaaplication:v1.0'
   } else {
     println "El contenedor 'javacontainer' ya existe."
