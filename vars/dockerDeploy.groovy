@@ -4,7 +4,7 @@ def call(script) {
     script: 'docker network inspect java_network >nul 2>&1 && echo EXISTS || echo NOT_EXISTS'
   ).trim()
 
-  if (networkCheck == 'NOT_EXISTS') {
+  if (networkCheck.equals('NOT_EXISTS')) { // Corrección en la comparación
     // La red no existe, se crea
     script.bat 'docker network create java_network'
   } else {
