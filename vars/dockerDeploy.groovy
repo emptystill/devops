@@ -1,14 +1,6 @@
 def call(script) {
-  // Comando para verificar si la red ya está creada
-  def networkCheck = script.bat "docker network inspect java_network", returnStatus: true
+  // Comando para crear o usar la red existente
+  script.bat 'docker network create --driver bridge java_network'
 
-  if (networkCheck == 0) {
-    // La red ya existe, se ignora la acción de crearla
-    println "La red 'java_network' ya está creada."
-  } else {
-    // La red no existe, se crea
-    script.bat "docker network create java_network"
-  }
-
-  script.bat "docker run -d --network java_network --name javacontainer -p 8081:8080 mateopulido99/javaaplication:v1.0"
+  script.bat 'docker run -d --network java_network --name javacontainer -p 8081:8080 mateopulido99/javaaplication:v1.0'
 }
