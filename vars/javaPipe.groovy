@@ -35,21 +35,21 @@ def call(String scmUrl) {
           }
         }
         stages {
-          stage('Docker Build') {
-            steps {
-              script {
-                dockerBuild(this)
-              }
-            }
-          }
+          // stage('Docker Build') {
+          //   steps {
+          //     script {
+          //       dockerBuild(this)
+          //     }
+          //   }
+          // }
 
-          stage('Docker Push') {
-            steps {
-              script {
-                dockerPush(this)
-              }
-            }
-          }
+          // stage('Docker Push') {
+          //   steps {
+          //     script {
+          //       dockerPush(this)
+          //     }
+          //   }
+          // }
 
           stage('Docker Deploy') {
             steps {
