@@ -2,30 +2,30 @@ def call(String scmUrl) {
   pipeline {
     agent any
     stages {
-      stage('Clone and Checkout') {
-        steps {
-          script {
-            //print "-------------------${env.GIT_BRANCH}-------------------"
-            clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
-          }
-        }
-      }
+      // stage('Clone and Checkout') {
+      //   steps {
+      //     script {
+      //       //print "-------------------${env.GIT_BRANCH}-------------------"
+      //       clonarycapturar('https://github.com/emptystill/JavaAplication.git', 'feature')
+      //     }
+      //   }
+      // }
       
-      stage('Build Artifact') {
-        steps {
-          script {
-            buildPipeline(this, 'clean package')
-          }
-        }
-      }
+      // stage('Build Artifact') {
+      //   steps {
+      //     script {
+      //       buildPipeline(this, 'clean package')
+      //     }
+      //   }
+      // }
       
-      stage('SonarAnalysis y QualityGate') {
-        steps {
-          script {
-            codeAnalysis(this)
-          }
-        }
-      }
+      // stage('SonarAnalysis y QualityGate') {
+      //   steps {
+      //     script {
+      //       codeAnalysis(this)
+      //     }
+      //   }
+      // }
 
       stage('Phase 2 Deploy') {
         when {
