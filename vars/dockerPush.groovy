@@ -1,10 +1,7 @@
 def call(script) {
-  script.withEnv([
-    "DOCKER_USERNAME=mateopulido99",
-    "DOCKER_PASSWORD=dckr_pat_96eVTLvulJZ_DLK2EqlbVEJrXV0"
-  ]) {
-    script.bat 'docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
-    script.bat 'docker tag javaaplication %DOCKER_USERNAME%/javaaplication:v1.0'
-    script.bat 'docker push %DOCKER_USERNAME%/javaaplication:v1.0'
+  script.withCredentials([string(credentialsId: 'dockerhub-credentials', variable: 'DOCKER_PASSWORD')]) {
+    script.bat 'echo %DOCKER_PASSWORD% | docker login -u mateopulido99 --password-stdin'
+    script.bat 'docker tag javaaplication mateopulido99/javaaplication:v1.0'
+    script.bat 'docker push mateopulido99/javaaplication:v1.0'
   }
 }
