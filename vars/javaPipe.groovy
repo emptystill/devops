@@ -43,13 +43,13 @@ def call(String scmUrl) {
           //   }
           // }
 
-          // stage('Docker Push') {
-          //   steps {
-          //     script {
-          //       dockerPush(this)
-          //     }
-          //   }
-          // }
+          stage('Docker Push') {
+            steps {
+              script {
+                dockerPush(this)
+              }
+            }
+          }
 
           stage('Docker Deploy') {
             steps {
@@ -59,13 +59,13 @@ def call(String scmUrl) {
             }
           }
 
-          stage('Owasp Analysis') {
-            steps {
-              script {
-                owaspAnalysis(this)
-              }
-            }
-          }
+          // stage('Owasp Analysis') {
+          //   steps {
+          //     script {
+          //       owaspAnalysis(this)
+          //     }
+          //   }
+          // }
         }
       }
     }
